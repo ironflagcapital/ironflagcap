@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IronFlag Capital</title>
+  <link rel="preload" href="/mnt/data/3b4a4b4e-c5e8-4806-b738-2c2e4298de4b.png" as="image">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --clr-primary: #0b2447;
+      --clr-secondary: #19376d;
+      --clr-accent: #ffce00;
+      --clr-bg: #f8f9fa;
+      --clr-text: #333;
+      --transition: 0.4s ease;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin:0; font-family:'Roboto',sans-serif; background:var(--clr-bg); color:var(--clr-text); line-height:1.5; }
+    nav[role="navigation"] { background:var(--clr-primary); padding:0.75rem 1.5rem; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; z-index:100; }
+    .logo-img { height:40px; }
+    .menu { display:flex; gap:1rem; }
+    .menu a { color:#fff; text-decoration:none; font-weight:500; padding:0.5rem; transition:var(--transition); }
+    .menu a:hover, .menu a:focus { opacity:0.8; outline:2px solid var(--clr-accent); }
+    .hero { position:relative; background:url('https://source.unsplash.com/1600x900/?finance,team') center/cover no-repeat; height:65vh; display:flex; align-items:center; justify-content:center; text-align:center; }
+    .hero::before { content:''; position:absolute; inset:0; background:rgba(11,36,71,0.75); }
+    .hero-content { position:relative; color:#fff; max-width:700px; padding:1rem; opacity:0; transform:translateY(20px); transition:opacity 0.8s ease, transform 0.8s ease; }
+    .hero-content.visible { opacity:1; transform:translateY(0); }
+    .hero-content img { height:60px; margin-bottom:1rem; }
+    .hero-content h1 { font-size:2.5rem; margin-bottom:0.75rem; }
+    .hero-content p { font-size:1rem; margin-bottom:1.5rem; }
+    .btn { display:inline-block; padding:0.6rem 1.6rem; background:var(--clr-accent); color:var(--clr-primary); font-weight:500; border-radius:50px; text-decoration:none; transition:var(--transition); }
+    .btn:hover, .btn:focus { transform:translateY(-2px); outline:none; }
+    .section { padding:3rem 1rem; max-width:1000px; margin:auto; }
+    .section-title { text-align:center; font-size:2rem; margin-bottom:1.5rem; color:var(--clr-primary); position:relative; }
+    .section-title::after { content:''; width:50px; height:3px; background:var(--clr-accent); display:block; margin:0.5rem auto 0; border-radius:2px; }
+    .why-us { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem; }
+    .why-card { background:#fff; padding:1.5rem; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.1); text-align:center; opacity:0; transform:translateY(20px); transition:opacity 0.6s ease, transform 0.6s ease; }
+    .why-card.visible { opacity:1; transform:translateY(0); }
+    .why-card h3 { margin-bottom:0.5rem; color:var(--clr-secondary); }
+    .why-card p { font-size:0.9rem; }
+    .loan-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1rem; }
+    .loan-card { background:#fff; border-left:4px solid var(--clr-accent); padding:1rem; border-radius:6px; box-shadow:0 2px 10px rgba(0,0,0,0.08); opacity:0; transform:translateY(20px); transition:opacity 0.6s ease, transform 0.6s ease; }
+    .loan-card.visible { opacity:1; transform:translateY(0); }
+    .loan-card h4 { margin-bottom:0.25rem; color:var(--clr-primary); }
+    .loan-card p { font-size:0.9rem; color:#555; }
+    /* FAQ Accordion */
+    .faq-item { background:#fff; border-radius:6px; margin-bottom:0.75rem; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.08); }
+    .faq-question { padding:1rem; cursor:pointer; display:flex; justify-content:space-between; align-items:center; }
+    .faq-question h4 { font-size:1rem; color:var(--clr-secondary); }
+    .faq-question button { background:none; border:none; font-size:1.2rem; transition:var(--transition); }
+    .faq-answer { max-height:0; padding:0 1rem; transition:max-height 0.4s ease; font-size:0.9rem; color:#444; }
+    .faq-item.expanded .faq-answer { max-height:200px; padding:0.75rem 1rem; }
+    /* Contact Section */
+    #contact { background:linear-gradient(to right, #f6f9fc, #eef2f3); padding:4rem 1rem; }
+    .contact-container { display:grid; grid-template-columns:1fr 1fr; gap:2rem; }
+    @media(max-width:768px) { .contact-container { grid-template-columns:1fr; } }
+    .contact-info { display:flex; flex-direction:column; gap:1rem; justify-content:center; }
+    .contact-info h3 { font-size:1.5rem; color:var(--clr-primary); margin-bottom:0.5rem; }
+    .contact-info p { font-size:1rem; color:#555; }
+    .contact-info .map iframe { border:0; border-radius:6px; }
+    .contact-form { background:#fff; padding:2rem; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.1); }
+    .contact-form label { display:block; margin-bottom:0.5rem; font-weight:500; }
+    .contact-form input, .contact-form textarea { width:100%; padding:0.75rem; margin-bottom:1rem; border:1px solid #ccc; border-radius:6px; font-size:0.95rem; transition:border var(--transition); }
+    .contact-form input:focus, .contact-form textarea:focus { border-color:var(--clr-accent); outline:none; }
+    .contact-form button { width:100%; background:var(--clr-secondary); padding:1rem; color:#fff; border:none; border-radius:50px; font-size:1rem; cursor:pointer; transition:var(--transition); }
+    .contact-form button:hover { background:var(--clr-primary); }
+    footer { text-align:center; padding:1.5rem; background:var(--clr-primary); color:#fff; font-size:0.85rem; }
+	
+	/* Nav logo */
+.logo-img {
+  height: 80px; /* was 40px */
+}
+
+/* Hero logo */
+.hero-content img {
+  height: 200px; /* was 60px */
+}
+  </style>
+</head>
+<body>
+  <nav role="navigation" aria-label="Main navigation">
+    <img src="ironflaglogo.png" alt="IronFlag Capital Logo" class="logo-img" loading="lazy">
+    <div class="menu">
+      <a href="#why">Why Us</a>
+      <a href="#loans">Loans</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content" id="hero-content">
+      <img src="ironflaglogo.png" alt="IronFlag Capital Logo" loading="lazy">
+      <h1>Empowering American Businesses with Veteran-Backed Financing</h1>
+      <p>Fast. Transparent. Reliable. As a veteran-owned firm, we stand by your business with integrity and excellence.</p>
+      <a href="#contact" class="btn">Get Started</a>
+    </div>
+  </section>
+
+  <section class="section" id="why">
+    <div class="section-title">Why Choose Us</div>
+    <div class="why-us">
+      <div class="why-card"><h3>Veteran-Owned & Operated</h3><p>Built on the principles of service and integrity.</p></div>
+      <div class="why-card"><h3>Rapid Approvals</h3><p>Decisions in as little as 24 hours.</p></div>
+      <div class="why-card"><h3>Transparent Terms</h3><p>No hidden fees. Clear schedules.</p></div>
+      <div class="why-card"><h3>Expert Advisors</h3><p>Guidance from finance professionals.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="loans">
+    <div class="section-title">Our Loan Solutions</div>
+    <div class="loan-grid">
+      <div class="loan-card"><h4>OnDeck Term Loan</h4><p>One-time lump sum<br>$5K–$250K | Up to 24 months.</p></div>
+      <div class="loan-card"><h4>OnDeck Line of Credit</h4><p>Revolving credit<br>$6K–$100K | 12–24 months.</p></div>
+      <div class="loan-card"><h4>Startup Lines</h4><p>Funding tailored for new ventures.</p></div>
+      <div class="loan-card"><h4>Capital Raise</h4><p>Connect with investors from seed to series.</p></div>
+	  <div class="loan-card"><h4>Card and payment processing solutions</h4><p>Allow your business to take all forms of payment. ACH, check, credt, debit, and gift cards</p></div>
+	   <div class="loan-card"><h4>Personal and business credit builder</h4><p>Increase and max out your personal and business credit score</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="section-title">FAQ</div>
+    <div class="faq-item" tabindex="0">
+      <div class="faq-question" role="button" aria-expanded="false">
+        <h4>What credit score do I need?</h4><button aria-label="Toggle answer">+</button>
+      </div>
+      <div class="faq-answer"><p>We work with scores as low as 600, though rates improve with higher scores.</p></div>
+    </div>
+    <div class="faq-item" tabindex="0">
+      <div class="faq-question" role="button" aria-expanded="false">
+        <h4>How fast can I get funded?</h4><button aria-label="Toggle answer">+</button>
+      </div>
+      <div class="faq-answer"><p>Many clients receive funds within 24–48 hours of approval.</p></div>
+    </div>
+    <div class="faq-item" tabindex="0">
+      <div class="faq-question" role="button" aria-expanded="false">
+        <h4>How do I apply?</h4><button aria-label="Toggle answer">+</button>
+      </div>
+      <div class="faq-answer"><p>Click “Get Started” to complete our secure online application in minutes.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="section-title">Contact Us</div>
+    <div class="contact-container">
+      <div class="contact-info">
+        <h3>Get in Touch</h3>
+        <p>Phone: (314) 616-9842</p>
+        <p>Email: fundit@ironflagcap.com</p>
+        <p>Address: Regus office midtown Manhattan, New York</p>
+        <p>Hours: Mon-Fri, 9am - 9pm ET</p>
+        <div class="map">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18..." width="100%" height="200" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="contact-form">
+        <form>
+          <label for="name">Name *</label>
+          <input id="name" type="text" placeholder="Your name" required>
+          <label for="email">Email *</label>
+          <input id="email" type="email" placeholder="Your email" required>
+          <label for="business">Business Name</label>
+          <input id="business" type="text" placeholder="Your business">
+          <label for="message">Message *</label>
+          <textarea id="message" rows="5" placeholder="How can we help?" required></textarea>
+          <button type="submit">Request Consultation</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 IronFlag Capital | Veteran-Owned | Accessible & Optimized
+  </footer>
+
+  <script defer>
+    const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');}});},{threshold:0.2});
+    document.querySelectorAll('.hero-content,.why-card,.loan-card').forEach(el=>observer.observe(el));
+    document.querySelectorAll('.faq-item').forEach(item=>{const btn=item.querySelector('button'),q=item.querySelector('.faq-question');q.addEventListener('click',()=>{const expanded=q.getAttribute('aria-expanded')==='true';q.setAttribute('aria-expanded',!expanded);item.classList.toggle('expanded');btn.textContent=expanded?'+':'−';});});
+  </script>
+</body>
+</html>
