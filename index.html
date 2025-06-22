@@ -142,34 +142,42 @@
     </div>
   </section>
 
-  <section class="section" id="contact">
-    <div class="section-title">Contact Us</div>
-    <div class="contact-container">
-      <div class="contact-info">
-        <h3>Get in Touch</h3>
-        <p>Phone: (314) 616-9842</p>
-        <p>Email: fundit@ironflagcap.com</p>
-        <p>Address: Regus office midtown Manhattan, New York</p>
-        <p>Hours: Mon-Fri, 9am - 9pm ET</p>
-        <div class="map">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18..." width="100%" height="200" loading="lazy"></iframe>
-        </div>
-      </div>
-      <div class="contact-form">
-        <form>
-          <label for="name">Name *</label>
-          <input id="name" type="text" placeholder="Your name" required>
-          <label for="email">Email *</label>
-          <input id="email" type="email" placeholder="Your email" required>
-          <label for="business">Business Name</label>
-          <input id="business" type="text" placeholder="Your business">
-          <label for="message">Message *</label>
-          <textarea id="message" rows="5" placeholder="How can we help?" required></textarea>
-          <button type="submit">Request Consultation</button>
-        </form>
+<section class="section" id="contact">
+  <div class="section-title">Contact Us</div>
+  <div class="contact-container">
+    <div class="contact-info">
+      <h3>Get in Touch</h3>
+      <p>Phone: (314) 616-9842</p>
+      <p>Email: fundit@ironflagcap.com</p>
+      <p>Address: Regus office midtown Manhattan, New York</p>
+      <p>Hours: Mon-Fri, 9am-9pm ET</p>
+      <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18..." width="100%" height="200" loading="lazy"></iframe>
       </div>
     </div>
-  </section>
+    <div class="contact-form">
+      <form action="https://formspree.io/f/xjkreqjo" method="POST">
+        <!-- optional: customize subject or redirect -->
+        <input type="hidden" name="_subject" value="New IronFlag Capital Inquiry">
+        <!-- <input type="hidden" name="_redirect" value="https://yourdomain.com/thank-you.html"> -->
+
+        <label for="name">Name *</label>
+        <input id="name" name="name" type="text" placeholder="Your name" required>
+
+        <label for="email">Email *</label>
+        <input id="email" name="email" type="email" placeholder="Your email" required>
+
+        <label for="business">Business Name</label>
+        <input id="business" name="business" type="text" placeholder="Your business">
+
+        <label for="message">Message *</label>
+        <textarea id="message" name="message" rows="5" placeholder="How can we help?" required></textarea>
+
+        <button type="submit">Request Consultation</button>
+      </form>
+    </div>
+  </div>
+</section>
 
   <footer>
     &copy; 2025 IronFlag Capital | Veteran-Owned | Accessible & Optimized
